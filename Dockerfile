@@ -28,5 +28,4 @@ WORKDIR /notebook
 
 EXPOSE 8888
 
-ENTRYPOINT ["docker-run-spark-env.sh"]
-CMD ipython notebook --no-browser --profile=pyspark --ip=*
+CMD ["aws s3 cp s3://$S3_BUCKET_CONF/hive/config/core-site.xml /usr/local/spark/conf/core-site.xml && aws s3 cp s3://$S3_BUCKET_CONF/hive/config/hive-site.xml /usr/local/spark/conf/hive-site.xml && ipython notebook --no-browser --profile=pyspark --ip=*"]
