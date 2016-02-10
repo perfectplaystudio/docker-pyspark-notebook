@@ -28,5 +28,5 @@ WORKDIR /notebook
 
 EXPOSE 8888
 
-ENTRYPOINT []
+ENTRYPOINT ["/docker-run-spark-env.sh"]
 CMD ipython notebook --no-browser --profile=pyspark --ip=*
