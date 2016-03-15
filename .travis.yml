@@ -1,0 +1,13 @@
+language: python
+python:
+- 2.7
+services:
+- docker
+install:
+- docker build -t pyspark-notebook .
+script:
+- docker ps -a
+notifications:
+  slack:
+    secure: kXMaHOtbNwUx/1ILxPt6h2PwtqxiKqUQci5FBTkbnegwTz8GZ+R6syWDtyi18w0iiyFR0wJhVEp0E2exQ4+6gT5Bd/6Bh0IWTPV/eovF9dyG6VMryZxRHFEvJ7aTY0b9q6lA6beO27IpUpGcBrEv4PQo39DHBRDy4WX20g8WZbwdy7sX2RFZb8g3LN2irtLYxTzpfarvHOli+Syppn8MNZ00y9rtyU0GnaEgoGtk3DofpQW7ejOIrUfOc8bHvwEEgq9KP96bWjMCLtri30ZViyqvJ2FuAzL1hJ4uKM+G47zHJgVo5DBWjDQD9d5hDnqcPiSvBsP8xFF6l8GDTVlBWZZeNqJN8ox59+Lb37+0B+aBoKubVm9ORlyc4a11snmOI/AXMoHcntRMrR0xa4J3mU8hwezlEz+u9+BG0CWWHBeA0avMNNjWRgGMgBhjj2KBd4rI2STzdNRLmKITaCZonfM10vmBMwdJ1csQrRRIoN2e3+Itnm3szBIIzM03Aqvnh26ZkNzks223WtNUz+ynPx+VS5lt80ODfTNcsVqFjdw7gfulNsBL9Zj4+RFAqpCCwILr1BGrXRhx9a7aA3AcwP0DflazoHTBD8ktym/6qtWmQTg+TQVW/ZcEHNmGNAsck3k76DVq/rRk45xkdm8rg9LhFmtDowtuLL6811+Z9K0=
+    

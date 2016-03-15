@@ -3,7 +3,6 @@ FROM dpatriot/docker-spark
 MAINTAINER Shago Vyacheslav <v.shago@corpwebgames.com>
 
 ENV PYTHONPATH $SPARK_HOME/python/:$PYTHONPATH
-ENV SPARK_CLASSPATH /usr/local/spark/lib/mysql-connector-java.jar
 
 RUN apt-get update \
     && apt-get install -y build-essential \
@@ -66,11 +65,13 @@ RUN apt-get -y update && apt-get install -y \
     readline-common
 
 RUN apt-get build-dep -y python-matplotlib
+RUN rm -rf /var/lib/apt/lists/*
 
 RUN pip install -r /opt/requirements.txt && \
     pip install --pre xgboost && \
     pip install certifi==2015.04.28
 
-RUN rm -rf /var/lib/apt/lists/*
+
+ENV SPARK_CLASSPATH /usr/local/spark/lib/mysql-connector-java.jar:/usr/local/spark/lib/spark-redshift.jar:/usr/local/spark/lib/spark-csv_2.11-1.3.0.jar:/usr/local/spark/lib/commons-csv-1.2.jar:/usr/local/spark/lib/RedshiftJDBC41-1.1.10.1010.jar:/usr/local/spark/lib/spark-streaming-kinesis-asl.jar
 
 CMD aws s3 cp s3://$S3_BUCKET_CONF/hive/config/core-site.xml /usr/local/spark/conf/core-site.xml;aws s3 cp s3://$S3_BUCKET_CONF/hive/config/hive-site.xml /usr/local/spark/conf/hive-site.xml;ipython notebook --no-browser --profile=pyspark --ip=*
