@@ -5,14 +5,15 @@ MAINTAINER Shago Vyacheslav <v.shago@corpwebgames.com>
 ENV PYTHONPATH $SPARK_HOME/python/:$PYTHONPATH
 
 RUN apt-get update \
-    && apt-get install -y build-essential \
+    && apt-get install -y build-essential ca-certificates \
     python \
     python-dev \
     python-pip \
     python-zmq \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install py4j \
+RUN pip install --upgrade pip setuptools && \
+    pip install py4j \
     ipython[notebook]==3.2 \
     jsonschema \
     jinja2 \
