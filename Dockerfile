@@ -12,13 +12,13 @@ RUN apt-get update \
     python-zmq \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade pip setuptools && \
-    pip install py4j \
+RUN pip install py4j \
     ipython[notebook]==3.2 \
     jsonschema \
     jinja2 \
     terminado \
-    tornado
+    tornado \
+    && pip install --upgrade --no-use-wheel pip setuptools 
 
 RUN ipython profile create pyspark
 
