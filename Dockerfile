@@ -1,4 +1,4 @@
-FROM dpatriot/docker-spark:1.5
+FROM webgames/spark:1.5
 
 MAINTAINER Shago Vyacheslav <v.shago@corpwebgames.com>
 
@@ -68,7 +68,6 @@ RUN apt-get build-dep -y python-matplotlib
 RUN rm -rf /var/lib/apt/lists/*
 
 RUN pip install -r /opt/requirements.txt && \
-    pip install --pre xgboost && \
     pip install certifi==2015.04.28
 
 
