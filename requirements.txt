@@ -20,11 +20,12 @@ mockredispy==2.9.0.9
 MySQL-python==1.2.5
 newrelic==2.38.2.33
 nose==1.3.4
-numpy==1.9.2
+numpy==1.13.3
+numexpr==2.6.4
 pandas==0.20.3
 redis==2.10.3
-scikit-learn==0.16.1
-scipy==0.14.0
+scikit-learn==0.19.1
+scipy==0.19.1
 SQLAlchemy==0.9.8
 tabulate==0.7.3
 unidecode==0.04.16
@@ -45,19 +46,22 @@ parse==1.6.6
 Fabric==1.13.2
 prettytable==0.7.2
 gspread==0.2.5
-oauth2client==1.4.11
+oauth2client==4.1.2
 minepy==1.0.0
 flasgger==0.5.2
 pyzmq==14.7.0
 jsonschema==2.5.1
 beautifulsoup4==4.4.0
 attrdict==2.0.0
+pyopenssl>=17.4.0
 
 ipython[all]
 flask-debugtoolbar
-seaborn==0.6.0
+seaborn==0.8.1
 
 psycopg2==2.6.1
+
+google-api-python-client==1.6.4
 
 # tests & QA
 coveralls
