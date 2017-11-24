@@ -19,10 +19,10 @@ RUN pip install --upgrade --no-use-wheel pip setuptools && pip install py4j \
     terminado \
     tornado
 
-RUN ipython profile create pyspark
+#RUN ipython profile create pyspark
 
-COPY pyspark-notebook.py /root/.ipython/profile_pyspark/startup/pyspark-notebook.py
-
+#COPY pyspark-notebook.py /root/.ipython/profile_pyspark/startup/pyspark-notebook.py
+COPY jupyter_notebook_config.json /root/.jupyter/jupyter_notebook_config.json
 VOLUME /notebook
 WORKDIR /notebook
 
@@ -73,4 +73,4 @@ RUN pip install -r /opt/requirements.txt && \
 
 ENV SPARK_CLASSPATH /usr/local/spark/jars/mysql-connector-java.jar:/usr/local/spark/jars/spark-avro.jar:/usr/local/spark/jars/spark-redshift.jar:/usr/local/spark/jars/RedshiftJDBC41-1.1.10.1010.jar:/usr/local/spark/jars/minimal-json.jar
 
-CMD aws s3 cp s3://$S3_BUCKET_CONF/hive/config/core-site.xml /usr/local/spark/conf/core-site.xml;aws s3 cp s3://$S3_BUCKET_CONF/hive/config/hive-site.xml /usr/local/spark/conf/hive-site.xml;ipython notebook --no-browser --profile=pyspark --ip=*
+CMD aws s3 cp s3://$S3_BUCKET_CONF/hive/config/core-site.xml /usr/local/spark/conf/core-site.xml;aws s3 cp s3://$S3_BUCKET_CONF/hive/config/hive-site.xml /usr/local/spark/conf/hive-site.xml;jupyter notebook --no-browser --allow-root --ip=*
