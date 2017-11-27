@@ -74,3 +74,6 @@ pytest-flask==0.8.1
 mccabe==0.3.1
 
 pyasn1-modules==0.1.5
+pymorphy2
+nltk
+transliterate==1.10
