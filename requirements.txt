@@ -77,3 +77,4 @@ pyasn1-modules==0.1.5
 pymorphy2
 nltk
 transliterate==1.10
+findspark
