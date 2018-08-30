@@ -17,7 +17,7 @@ RUN pip install py4j \
     jsonschema \
     jinja2 \
     terminado \
-    tornado \
+    tornado==4.5.1 \
     && pip install --upgrade --no-use-wheel pip setuptools 
 
 RUN ipython profile create pyspark
@@ -48,6 +48,8 @@ RUN apt-get -y update && apt-get install -y \
     libfreetype6-dev \
     libpq-dev \
     libxft-dev \
+    libffi-dev \
+    libssl-dev \
     pkg-config \
     python2.7 \
     python-dev \
@@ -63,15 +65,21 @@ RUN apt-get -y update && apt-get install -y \
     unzip \
     wget \
     libncurses5-dev \
-    readline-common
+    readline-common \ 
+    #&& pip install pyopenssl ndg-httpsclient pyasn1 \
+    && pip install --user -r /opt/requirements.txt && \
+    pip install certifi==2015.04.28 \
+    && apt-get build-dep -y python-matplotlib \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get build-dep -y python-matplotlib
-RUN rm -rf /var/lib/apt/lists/*
-
-RUN pip install -r /opt/requirements.txt && \
-    pip install certifi==2015.04.28
+#RUN pip install -r /opt/requirements.txt && \
+#    pip install certifi==2015.04.28
 
 
 ENV SPARK_CLASSPATH /usr/local/spark/jars/mysql-connector-java.jar:/usr/local/spark/jars/spark-avro.jar:/usr/local/spark/jars/spark-redshift.jar:/usr/local/spark/jars/RedshiftJDBC41-1.1.10.1010.jar:/usr/local/spark/jars/minimal-json.jar
-
-CMD aws s3 cp s3://$S3_BUCKET_CONF/hive/config/core-site.xml /usr/local/spark/conf/core-site.xml;aws s3 cp s3://$S3_BUCKET_CONF/hive/config/hive-site.xml /usr/local/spark/conf/hive-site.xml;ipython notebook --no-browser --profile=pyspark --ip=*
+ENV KEYSTORE_SECRET=changeit
+ENV KEYSTORE_KEY=/opt/secure.keystore
+CMD aws s3 cp s3://$S3_BUCKET_CONF/hive/config/core-site.xml /usr/local/spark/conf/core-site.xml; \
+    aws s3 cp s3://$S3_BUCKET_CONF/hive/config/hive-site.xml /usr/local/spark/conf/hive-site.xml; \
+    aws s3 cp $KEYSTORE_PATH $KEYSTORE_KEY; \
+    ipython notebook --no-browser --profile=pyspark --ip=*
