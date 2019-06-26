@@ -1,4 +1,4 @@
-FROM webgames/spark:1.5
+FROM webgames/spark:2.1.1
 
 MAINTAINER Shago Vyacheslav <v.shago@corpwebgames.com>
 
@@ -18,7 +18,7 @@ RUN pip install py4j \
     jinja2 \
     terminado \
     tornado==4.5.1 \
-    && pip install --upgrade --no-use-wheel pip setuptools 
+    && pip install --upgrade --no-use-wheel --force-reinstall pip==9.0.3 setuptools 
 
 RUN ipython profile create pyspark
 
