@@ -1,4 +1,4 @@
-FROM webgames/spark:1.5
+FROM webgames/spark:2.1.1
 
 MAINTAINER Shago Vyacheslav <v.shago@corpwebgames.com>
 
@@ -12,12 +12,12 @@ RUN apt-get update \
     python-zmq \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade --no-use-wheel pip setuptools && pip install py4j \
+RUN pip install --upgrade --no-use-wheel --force-reinstall pip==9.0.3 setuptools && pip install py4j \
     ipython==5.4.1 \
     jsonschema \
     jinja2 \
     terminado \
-    tornado
+    tornado==4.5.2
 
 #RUN ipython profile create pyspark
 
