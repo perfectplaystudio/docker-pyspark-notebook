@@ -55,7 +55,7 @@ beautifulsoup4==4.4.0
 attrdict==2.0.0
 pyopenssl>=17.4.0
 
-ipython==5.4.1
+ipython==7.16.3
 flask-debugtoolbar
 seaborn==0.8.1
 
